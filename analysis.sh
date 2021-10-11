@@ -28,3 +28,16 @@ Make a plot showing the number of reads belonging to a cluster, as obtained by C
 awk '{print NF}' outputfile > n_fields.txt
 script scripts/clustering_stats.R -i n_fields.txt -o plots/carnac_cluster_stats.pdf
 
+"""
+Running the Assembly using Flye
+"""
+version flye/2.8.1
+
+flye --pacbio-hifi HG002.GRCh37.unmapped.fastq.gz  --out-dir assembly --threads 32
+
+
+""" 
+Running the assembly using spades
+"""
+Version SPAdes/3.14.0
+spades.py -o spades_assembly  -s ../../HG002.GRCh37.unmapped.fastq.gz  --only-assembler
